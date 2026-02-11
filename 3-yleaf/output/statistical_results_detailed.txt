@@ -1,0 +1,36 @@
+$Spearman_correlation
+$Spearman_correlation$rho
+      rho 
+0.6073546 
+
+$Spearman_correlation$p_value
+[1] 0
+
+$Spearman_correlation$method
+[1] "Spearman's rank correlation rho"
+
+
+$Pearson_correlation_log
+$Pearson_correlation_log$correlation
+      cor 
+0.5804499 
+
+$Pearson_correlation_log$p_value
+[1] 0
+
+$Pearson_correlation_log$method
+[1] "Pearson's product-moment correlation"
+
+
+$Linear_regression_log
+$Linear_regression_log$R_squared
+[1] 0.3369221
+
+$Linear_regression_log$coefficients
+       (Intercept) log10(Total_reads) 
+         3.2006322          0.2439884 
+
+$Linear_regression_log$p_value
+[1] 0
+
+

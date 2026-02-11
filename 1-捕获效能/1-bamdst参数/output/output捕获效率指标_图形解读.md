@@ -1,0 +1,70 @@
+# 捕获效率指标图形解读
+
+本文件用于解释各图形的含义、坐标轴信息与结果解读。
+
+## A Specificity (Base Level)
+- 图形类型：直方图（Histogram）。
+- x 轴：Fraction (%)，样本在 base 层面的特异性比例。
+- y 轴：Sample Count，样本数量。
+- 说明：不同分面对应不同指标，分布集中表示样本一致性较高。
+- [Target] Fraction of Target Data in mapped data：中位数 64.58，IQR 62.85–66.59，范围 36.24–86.64。
+- [flank] Fraction of flank Data in all data：中位数 75.46，IQR 73.95–77.07，范围 47.64–97.49。
+- [flank] Fraction of flank Data in mapped data：中位数 75.59，IQR 74.10–77.20，范围 47.95–97.49。
+
+## B Specificity (Reads Level)
+- 图形类型：直方图（Histogram）。
+- x 轴：Fraction (%)，样本在 reads 层面的特异性比例。
+- y 轴：Sample Count，样本数量。
+- 说明：与 A 类似，用于比较 reads 层面的特异性分布。
+- [Target] Fraction of Target Reads in mapped reads：中位数 73.54，IQR 72.14–75.46，范围 44.49–95.86。
+- [flank] Fraction of flank Reads in all reads：中位数 76.63，IQR 75.35–78.26，范围 50.91–97.94。
+- [flank] Fraction of flank Reads in mapped reads：中位数 76.71，IQR 75.45–78.44，范围 51.23–97.94。
+
+## C Target Depth Distribution
+- 图形类型：直方图（Histogram）。
+- x 轴：[Target] Average depth。
+- y 轴：Sample Count。
+- 说明：样本深度分布，峰值位置反映总体深度水平。
+- [Target] Average depth：中位数 172.21，IQR 132.50–217.75，范围 10.06–853.55。
+
+## D Flank Depth Distribution
+- 图形类型：直方图（Histogram）。
+- x 轴：[flank] Average depth。
+- y 轴：Sample Count。
+- 说明：侧翼区域深度分布，用于比较与目标区的深度差异。
+- [flank] Average depth：中位数 135.92，IQR 104.54–171.15，范围 9.83–665.79。
+
+## E Chromosome Coverage Distribution
+- 图形类型：核密度图（Kernel Density Plot）+ 地毯图（Rug）。
+- x 轴：Chromosome Coverage（0.96–1.00）。
+- y 轴：Density。
+- 说明：密度峰位置反映大多数样本覆盖率区间，地毯图显示样本在 x 轴的分布位置。
+- ChromosomeCoverage：中位数 99.96，IQR 99.93–99.98，范围 3.34–100.00。
+
+## F Target Coverage Distribution
+- 图形类型：经验累积分布函数（Empirical Cumulative Distribution Function）。
+- x 轴：Coverage (%)。
+- y 轴：ECDF（累计比例）。
+- 说明：曲线越靠右说明覆盖率越高；横向虚线表示指定 y 值时的覆盖率水平。
+- ECDF 参考线：
+| Metric | y=0.25 (x) | y=0.5 (x) | y=0.75 (x) | y=0.9 (x) |
+|---|---:|---:|---:|---:|
+| >0x | 99.93 | 99.96 | 99.98 | 99.99 |
+| >=4x | 99.78 | 99.88 | 99.92 | 99.94 |
+| >=10x | 99.36 | 99.65 | 99.76 | 99.83 |
+| >=30x | 96.32 | 98.20 | 98.85 | 99.17 |
+| >=100x | 60.47 | 78.50 | 87.86 | 92.46 |
+
+## G Region Coverage Distribution
+- 图形类型：经验累积分布函数（Empirical Cumulative Distribution Function）。
+- x 轴：Fraction (%)。
+- y 轴：ECDF（累计比例）。
+- 说明：用于评估覆盖均匀性，曲线陡峭说明样本分布更集中。
+- ECDF 参考线：
+| Metric | y=0.25 (x) | y=0.5 (x) | y=0.75 (x) | y=0.9 (x) |
+|---|---:|---:|---:|---:|
+| >=4x | 99.48 | 99.70 | 99.79 | 99.85 |
+| >=10x | 98.43 | 99.08 | 99.36 | 99.53 |
+| >=30x | 92.66 | 95.63 | 96.98 | 97.74 |
+| >=100x | 53.74 | 71.86 | 81.23 | 86.49 |
+

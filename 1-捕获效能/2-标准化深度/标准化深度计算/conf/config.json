@@ -1,0 +1,10 @@
+{
+  "average_depth_csv": "/data/liuyunhui/capture_7.4M/coverage/conf/average_depth.csv",
+  "depth_dir_list_txt": "/data/liuyunhui/capture_7.4M/coverage/conf/7038_7.4mbed_dir.txt",
+  "depth_filename": "depth.tsv.gz",
+  "output_dir": "/data/liuyunhui/capture_7.4M/coverage/conf/output",
+  "tmp_dir": "tmp",
+  "log_dir": "log",
+  "jobs": 16,
+  "force": false
+}

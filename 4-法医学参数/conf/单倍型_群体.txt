@@ -1,0 +1,4 @@
+SampleID	Group
+1	Hui_Anhui
+2	Hui_Anhui
+3	Hui_Anhui

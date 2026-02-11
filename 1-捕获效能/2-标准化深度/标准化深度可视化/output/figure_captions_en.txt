@@ -1,0 +1,7 @@
+Figure 1: Uniformity vs average depth (dashed line at 0.60).
+Figure 2: Uniformity vs log10 average depth (dashed line at 0.60).
+Figure 3: Normalized coverage across genomic positions (selected samples).
+Summary (EN): Uniformity is positively correlated with average depth (Pearson r=0.404, n=7037, p<0.001). The correlation is stronger after log10 transform of average depth (Pearson r=0.494, n=7037, p<0.001).
+摘要（CN）：均一性与平均深度呈正相关（Pearson r=0.404，n=7037，p<0.001）。对平均深度取 log10 后相关性更强（Pearson r=0.494，n=7037，p<0.001）。
+Figure 3 interpretation (EN): The position curve shows how normalized coverage changes along genomic positions; flatter curves indicate more uniform coverage, while systematic peaks/valleys suggest positional bias. The target intervals band marks regions of interest near the baseline for visual alignment.
+图3解读（CN）：位置曲线展示标准化覆盖在基因组位置上的变化；曲线越平坦代表覆盖越均一，系统性峰谷提示位置偏差。靠近基线的目标区间带用于标注关注区域。

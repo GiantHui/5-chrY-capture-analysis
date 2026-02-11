@@ -1,0 +1,4 @@
+Test	Statistic	P_value	Method
+Spearman Correlation	rho = 0.6074	< 2.22e-16	Spearman's rank correlation rho
+Pearson Correlation (log)	r = 0.5804	< 2.22e-16	Pearson's product-moment correlation
+Linear Regression (log)	R² = 0.3369	< 2.22e-16	Linear Model (log-log)

@@ -1,0 +1,55 @@
+>     /data/liuyunhui/Han_Chongqing/fasta/data/cqHan.indel.lowq.het.dp2.mis0.05.mM2.ind0.05.mis0.05.mM2.fasta \
+>     -o /data/liuyunhui/Han_Chongqing/fasta/output/dedup_sequences.fasta \
+>     -c 0.999 -aS 0.99 -T 8 -M 0 -d 0
+================================================================
+Program: CD-HIT, V4.8.1 (+OpenMP), Apr 24 2025, 22:00:32
+Command: cd-hit-est -i
+         /data/liuyunhui/Han_Chongqing/fasta/data/cqHan.indel.lowq.het.dp2.mis0.05.mM2.ind0.05.mis0.05.mM2.fasta
+         -o
+         /data/liuyunhui/Han_Chongqing/fasta/output/dedup_sequences.fasta
+         -c 0.999 -aS 0.99 -T 8 -M 0 -d 0
+
+Started: Sat Nov  1 17:28:13 2025
+================================================================
+                            Output                              
+----------------------------------------------------------------
+total seq: 1792
+longest and shortest : 50508 and 50508
+Total letters: 90510336
+Sequences have been sorted
+
+Approximated minimal memory consumption:
+Sequence        : 90M
+Buffer          : 8 X 28M = 226M
+Table           : 2 X 16M = 33M
+Miscellaneous   : 4M
+Total           : 355M
+
+Table limit with the given memory limit:
+Max number of representatives: 957106
+Max number of word counting entries: 18446744073604138322
+
+# comparing sequences from          0  to        179
+---------- new table with      171 representatives
+# comparing sequences from        179  to        340
+99.9%---------- new table with      136 representatives
+# comparing sequences from        340  to        485
+----------     14 remaining sequences to the next cycle
+---------- new table with      115 representatives
+# comparing sequences from        471  to        603
+99.7%---------- new table with      119 representatives
+# comparing sequences from        603  to        721
+99.9%---------- new table with      104 representatives
+# comparing sequences from        721  to        828
+99.9%---------- new table with       95 representatives
+# comparing sequences from        828  to       1792
+...............---------- new table with      532 representatives
+
+     1792  finished       1272  clusters
+
+Approximated maximum memory consumption: 596M
+writing new database
+writing clustering information
+program completed !
+
+Total CPU time 182.00
