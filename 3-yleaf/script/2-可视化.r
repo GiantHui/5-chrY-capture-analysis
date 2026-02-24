@@ -2,8 +2,11 @@ library(tidyverse)
 library(tidyplots)
 library(patchwork)
 
+# 关闭科学计数法显示
+options(scipen = 999)
+
 # 设定工作区
-setwd("/mnt/d/捕获体系/2-yleaf/script")
+setwd("/mnt/d/捕获体系/3-yleaf/script")
 
 # 创建输出目录
 output_dir <- "../output"
@@ -13,6 +16,13 @@ if (!dir.exists(output_dir)) {
 
 # 读取数据
 df <- read_tsv("../data/all_merge.tsv")
+
+# 预计算log10坐标用于直接显示log10(X)结果
+df <- df |>
+  mutate(
+    log10_Total_reads = log10(Total_reads),
+    log10_Valid_markers = log10(Valid_markers)
+  )
 
 # 统计学检验部分
 # 2. Spearman 秩相关检验
@@ -86,8 +96,9 @@ cat("线性回归R²(log): R² =", round(r_squared, 4),
 p1 <- df |>
   tidyplot(x = Total_reads) |>
   add_histogram(bins = 50, fill = colors_discrete_friendly[1]) |>
+  add(ggplot2::scale_x_continuous(labels = scales::label_number(scale = 1e-3, suffix = "K", accuracy = 1))) |>
   add_title("Total reads Distribution") |>
-  adjust_x_axis_title("Total reads") |>
+  adjust_x_axis_title("Total reads (thousands)") |>
   adjust_y_axis_title("Count") |>
   theme_tidyplot()
 
@@ -95,8 +106,9 @@ p1 <- df |>
 p2 <- df |>
   tidyplot(x = Valid_markers) |>
   add_histogram(bins = 50, fill = colors_discrete_friendly[2]) |>
+  add(ggplot2::scale_x_continuous(labels = scales::label_number(scale = 1e-3, suffix = "K", accuracy = 1))) |>
   add_title("Valid markers Distribution") |>
-  adjust_x_axis_title("Valid markers") |>
+  adjust_x_axis_title("Valid markers (thousands)") |>
   adjust_y_axis_title("Count") |>
   theme_tidyplot()
 
@@ -104,22 +116,24 @@ p2 <- df |>
 p3 <- df |>
   tidyplot(x = Total_reads, y = Valid_markers) |>
   add_data_points(alpha = 0.6, size = 0.8, color = colors_discrete_friendly[3]) |>
+  add(ggplot2::scale_x_continuous(labels = scales::label_number(scale = 1e-3, suffix = "K", accuracy = 1))) |>
+  add(ggplot2::scale_y_continuous(labels = scales::label_number(scale = 1e-3, suffix = "K", accuracy = 1))) |>
   add_title("Valid markers vs Total reads") |>
-  adjust_x_axis_title("Total reads") |>
-  adjust_y_axis_title("Valid markers") |>
+  adjust_x_axis_title("Total reads (thousands)") |>
+  adjust_y_axis_title("Valid markers (thousands)") |>
   theme_tidyplot()
 
 # 4. 散点图（对数坐标）+ 回归线
 p4 <- df |>
-  tidyplot(x = Total_reads, y = Valid_markers) |>
+  tidyplot(x = log10_Total_reads, y = log10_Valid_markers) |>
   add_data_points(alpha = 0.6, size = 0.8, color = colors_discrete_friendly[4]) |>
   add_curve_fit(method = "lm", formula = y ~ x, color = colors_discrete_friendly[5], size = 1) |>
-  adjust_x_axis(trans = "log10") |>
-  adjust_y_axis(trans = "log10") |>
+  add(ggplot2::scale_x_continuous(labels = scales::label_number(accuracy = 0.1))) |>
+  add(ggplot2::scale_y_continuous(labels = scales::label_number(accuracy = 0.1))) |>
   add_title(paste0("Valid markers vs Total reads (log-log)\nR² = ", 
-                   round(r_squared, 4), ", ρ = ", round(spearman_test$estimate, 4))) |>
-  adjust_x_axis_title("Total reads (log10)") |>
-  adjust_y_axis_title("Valid markers (log10)") |>
+                   round(r_squared, 4), ", rho = ", round(spearman_test$estimate, 4))) |>
+  adjust_x_axis_title("log10(Total reads)") |>
+  adjust_y_axis_title("log10(Valid markers)") |>
   theme_tidyplot()
 
 # 先保存各个单独的图片（修复尺寸问题）
